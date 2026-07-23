@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://cdn.prod.website-files.com">
+    <title>DISEÑ-AR - Servicios</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="components.css">
+    <link rel="stylesheet" href="lightbox.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,600;1,9..144,700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Archivo', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+        /* ===== Servicios — formato catálogo (dark) ===== */
+        .cat-services {
+            padding: 72px 0 84px;
+            background: #0d1b2a;
+            border-radius: 30px;
+            margin: 28px 20px 0;
+            scroll-margin-top: 120px;
+        }
+        .cat-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 clamp(24px, 4vw, 56px);
+        }
+        .cat-head { max-width: 720px; margin-bottom: 44px; }
+        .cat-title {
+            font-family: 'Fraunces', Georgia, serif;
+            font-style: italic;
+            font-optical-sizing: auto;
+            font-variation-settings: 'SOFT' 0, 'WONK' 1;
+            font-weight: 700;
+            font-size: clamp(48px, 7vw, 84px);
+            line-height: 1.04;
+            color: #ffffff;
+            letter-spacing: -0.01em;
+            margin: 0 0 20px;
+            will-change: transform;
+        }
+        @keyframes cat-title-scroll {
+            from { transform: translateX(-9%); opacity: 0.4; }
+            to   { transform: translateX(5%);  opacity: 1; }
+        }
+        @supports (animation-timeline: view()) {
+            .cat-title {
+                animation: cat-title-scroll linear both;
+                animation-timeline: view();
+                animation-range: entry 0% cover 55%;
+            }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .cat-title { animation: none; transform: none; }
+        }
+        .cat-sub {
+            font-size: 18px;
+            line-height: 1.55;
+            color: #9fb0c9;
+            margin: 0;
+            max-width: 620px;
+        }
+        .cat-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            align-items: start;
+        }
+        .cat-card {
+            background: #ffffff;
+            border-radius: 22px;
+            overflow: hidden;
+            box-shadow: 0 30px 60px -34px rgba(0, 0, 0, 0.6);
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s ease;
+        }
+        .cat-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 44px 72px -34px rgba(0, 0, 0, 0.7);
+        }
+        .cat-media {
+            position: relative;
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+        }
+        .cat-media img {
+            width: 100% !important;
+            height: 100% !important;
+            object-fit: cover;
+            display: block;
+        }
+        .cat-badge {
+            position: absolute;
+            top: 18px;
+            left: 18px;
+            padding: 8px 16px;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+        .cat-badge--coral { background: #dbe6fb; color: #1d4ed8; }
+        .cat-badge--teal  { background: #dde3ee; color: #16324f; }
+        .cat-body { padding: 30px 32px 34px; }
+        body { background: #ffffff; }
+        .cat-headrow {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 18px;
+        }
+        .cat-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 13px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+            transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.5s ease;
+        }
+        .cat-icon svg {
+            width: 24px;
+            height: 24px;
+            transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .cat-card:hover .cat-icon {
+            transform: translateY(-3px) scale(1.06);
+        }
+        .cat-card:hover .cat-icon--coral { box-shadow: 0 10px 22px -6px rgba(37, 99, 235, 0.55); }
+        .cat-card:hover .cat-icon--teal { box-shadow: 0 10px 22px -6px rgba(22, 50, 79, 0.5); }
+        .cat-card:hover .cat-icon svg {
+            transform: rotate(-8deg) scale(1.08);
+        }
+        .cat-icon--coral { background: #2563eb; }
+        .cat-icon--teal  { background: #16324f; }
+        .cat-name {
+            font-weight: 800;
+            font-size: clamp(26px, 2.6vw, 32px);
+            color: #16241f;
+            margin: 0;
+            line-height: 1;
+            letter-spacing: -0.01em;
+        }
+        .cat-desc {
+            font-size: 16.5px;
+            line-height: 1.6;
+            color: #4b5563;
+            margin: 0 0 22px;
+        }
+        .cat-desc strong { color: #16241f; font-weight: 700; }
+        .cat-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 13px; }
+        .cat-list li {
+            position: relative;
+            padding-left: 32px;
+            font-size: 16px;
+            color: #1f2b26;
+            line-height: 1.4;
+            transform-origin: left center;
+            transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.35s ease;
+            will-change: transform;
+        }
+        /* Efecto "dock": el ítem enfocado crece y los demás se encogen */
+        .cat-list:hover li {
+            transform: scale(0.96);
+            opacity: 0.5;
+        }
+        .cat-list li:hover {
+            transform: scale(1.09);
+            opacity: 1;
+        }
+        .cat-list li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 1px;
+            width: 20px;
+            height: 20px;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            transform-origin: center;
+            transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        /* El check reacciona al enfocar su característica */
+        .cat-list li:hover::before {
+            transform: scale(1.35) rotate(-10deg);
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .cat-list li,
+            .cat-list:hover li,
+            .cat-list li:hover,
+            .cat-list li::before,
+            .cat-list li:hover::before {
+                transition: none;
+                transform: none;
+                opacity: 1;
+            }
+        }
+        .cat-list--coral li::before {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232563eb' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='4 12 10 18 20 6'/%3E%3C/svg%3E");
+        }
+        .cat-list--teal li::before {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%2316324f' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='4 12 10 18 20 6'/%3E%3C/svg%3E");
+        }
+        .cat-banner {
+            margin-top: 32px;
+            background: #16324f;
+            border-radius: 18px;
+            padding: 26px 32px;
+            display: flex;
+            align-items: center;
+            gap: 22px;
+        }
+        .cat-star {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            background: #2563eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+        .cat-star svg {
+            width: 28px;
+            height: 28px;
+            animation: cat-star-twinkle 3.6s ease-in-out infinite;
+            transform-origin: center;
+        }
+        @keyframes cat-star-twinkle {
+            0%, 100% { transform: rotate(0deg) scale(1); opacity: 1; }
+            45% { transform: rotate(0deg) scale(1); opacity: 1; }
+            60% { transform: rotate(18deg) scale(1.18); opacity: 0.85; }
+            75% { transform: rotate(-6deg) scale(1.05); opacity: 1; }
+        }
+        .cat-banner:hover .cat-star {
+            transform: rotate(12deg) scale(1.08);
+            transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .cat-star svg { animation: none; }
+            .cat-icon, .cat-icon svg, .cat-card:hover .cat-icon,
+            .cat-card:hover .cat-icon svg, .cat-banner:hover .cat-star { transition: none; transform: none; }
+        }
+        .cat-banner h3 {
+            font-weight: 700;
+            font-size: clamp(18px, 2vw, 22px);
+            color: #ffffff;
+            margin: 0 0 4px;
+            line-height: 1.2;
+        }
+        .cat-banner p {
+            font-size: 16px;
+            line-height: 1.5;
+            color: #a9bad3;
+            margin: 0;
+        }
+        /* ===== Hero: proporciones y espaciado ===== */
+        .bento-section { padding: 0 0 24px; }
+        .bento-container { padding-top: 128px; }
+        .services-hero {
+            grid-template-columns: 1fr;
+            align-items: start;
+            gap: 0;
+            margin-bottom: 0;
+        }
+        .services-hero-copy { align-self: center; max-width: 900px; }
+        @media (max-width: 1024px) {
+            .bento-container { padding: 138px 50px 0; }
+        }
+        @media (max-width: 768px) {
+            .bento-container { padding: 104px 20px 0; }
+            .services-hero-copy { margin-bottom: 0; }
+        }
+        .cat-services { margin-top: 104px; }
+        @media (max-width: 860px) {
+            .cat-services { margin: 88px 10px 0; border-radius: 22px; }
+            .cat-grid { grid-template-columns: 1fr; }
+            .cat-banner { flex-direction: column; align-items: flex-start; text-align: left; }
+        }
+    </style>
+</head>
+<body>
+    <div id="navbar-placeholder"></div>
+
+    <!-- Services Section — formato catálogo -->
+    <section class="cat-services" id="servicios">
+        <div class="cat-container">
+
+            <header class="cat-head">
+                <h1 class="cat-title">Servicios</h1>
+                <p class="cat-sub">Distintas técnicas de impresión adaptadas a cada producto y envase, con acabado profesional y durable.</p>
+            </header>
+
+            <div class="cat-grid">
+
+                <!-- Autoadhesivas -->
+                <article class="cat-card">
+                    <div class="cat-media">
+                        <span class="cat-badge cat-badge--coral">Más solicitado</span>
+                        <img src="./assets/etiquetas-autoadhesivas.webp" alt="etiquetas-autoadhesivas">
+                    </div>
+                    <div class="cat-body">
+                        <div class="cat-headrow">
+                            <span class="cat-icon cat-icon--coral">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.59 13.41 13.42 20.6a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82Z"/><circle cx="7" cy="7" r="1.4" fill="#fff" stroke="none"/></svg>
+                            </span>
+                            <h2 class="cat-name">Autoadhesivas</h2>
+                        </div>
+                        <p class="cat-desc"><strong>Presentación clara y aplicación eficiente.</strong> Etiquetas en rollo ideales para alimentos, cosméticos, productos de limpieza y más, en gran variedad de formas y acabados.</p>
+                        <ul class="cat-list cat-list--coral">
+                            <li>Presentación limpia y profesional</li>
+                            <li>Alta legibilidad (marca e información)</li>
+                            <li>Aplicación rápida y eficiente</li>
+                            <li>Buen desempeño frente a manipulación y uso diario</li>
+                        </ul>
+                    </div>
+                </article>
+
+                <!-- Termocontraíbles -->
+                <article class="cat-card">
+                    <div class="cat-media">
+                        <span class="cat-badge cat-badge--teal">Para envases</span>
+                        <img src="./assets/termocontraibles.webp" alt="termocontraibles">
+                    </div>
+                    <div class="cat-body">
+                        <div class="cat-headrow">
+                            <span class="cat-icon cat-icon--teal">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16Z"/><path d="m3.3 7 8.7 5 8.7-5"/><path d="M12 22V12"/></svg>
+                            </span>
+                            <h2 class="cat-name">Termocontraíbles</h2>
+                        </div>
+                        <p class="cat-desc"><strong>Mayor presencia visual en el envase.</strong> Mangas termoencogibles en PETG que se ajustan a formas complejas con impresión envolvente de 360°.</p>
+                        <ul class="cat-list cat-list--teal">
+                            <li>Diseño envolvente 360° (más espacio para la marca)</li>
+                            <li>Excelente impacto visual y diferenciación</li>
+                            <li>Ajuste perfecto en envases con formas complejas</li>
+                            <li>Presentación premium para punto de venta</li>
+                        </ul>
+                    </div>
+                </article>
+
+            </div>
+
+            <div class="cat-banner">
+                <span class="cat-star">
+                    <svg viewBox="0 0 24 24" fill="#ffffff" stroke="none"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14l-5-4.87 7.1-1.01L12 2z"/></svg>
+                </span>
+                <div>
+                    <h3>Acabados que destacan: hologramas y Cold foil</h3>
+                    <p>Efectos metalizados y de seguridad para que tu producto brille en el punto de venta.</p>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="service-area" id="materiales">
+        <div class="container">
+            <h2 class="service-area-title">MATERIALES</h2>
+            <div class="service-list">
+                <!-- Service Item 1 -->
+                <div class="service-item">
+                    <div class="service-item-left">
+                        <div class="service-number">01</div>
+                        <span class="service-title">OPP BLANCO</span>
+                        <div class="service-info">
+                            <div class="service-tag-wrap">
+                                <div class="service-tag">Versátil</div>
+                                <div class="service-tag">Alta legibilidad</div>
+                                <div class="service-tag">Uso diario</div>
+                            </div>
+                            <p class="service-summary">El OPP Blanco es una opción versátil y muy usada en etiquetas autoadhesivas. Brinda una apariencia limpia y consistente, con excelente legibilidad para marca e información.</p>
+                        </div>
+                    </div>
+                    <div class="service-coll-wrap">
+                        <div class="service-thumb-wrap">
+                            <img src="./assets/gallery/materials/blanco.webp" alt="Service" class="service-thumb" width="180" height="240" loading="lazy" decoding="async">
+                        </div>
+                        <div class="service-thumb-wrap">
+                            <video class="service-thumb" width="180" height="240" autoplay loop muted playsinline poster="https://cdn.prod.website-files.com/68d26deff2918db87d096880/68d67a6d392478e7984b2c9c_solar-service-1.avif">
+                                <source src="./assets/videos/materials-vid/videoblanco.mp4" type="video/mp4">
+                                Tu navegador no soporta el elemento de video.
+                            </video>
+                        </div>
+                        <div class="service-thumb-wrap service-gallery-trigger" data-material="OPP BLANCO" data-gallery="./assets/gallery/opp-blanco/blanco-01.webp|./assets/gallery/opp-blanco/blanco-02.webp|./assets/gallery/opp-blanco/blanco-03.webp|./assets/gallery/opp-blanco/blanco-04.webp|./assets/gallery/opp-blanco/blanco-05.webp|./assets/gallery/opp-blanco/blanco-06.webp|./assets/gallery/opp-blanco/blanco-07.webp|./assets/gallery/opp-blanco/blanco-08.webp|./assets/gallery/opp-blanco/blanco-09.webp|./assets/gallery/opp-blanco/blanco-10.webp|./assets/gallery/opp-blanco/blanco-11.webp|./assets/gallery/opp-blanco/blanco-12.webp">
+                            <img src="./assets/gallery/materials/blanco.webp" alt="Galería OPP Blanco" class="service-thumb" width="180" height="240" loading="lazy" decoding="async">
+                            <div class="service-gallery-corner"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="1.6" fill="#fff" stroke="none"/><path d="m21 15-4.5-4.5L7 20"/></svg></div>
+                            <div class="service-gallery-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-4.5-4.5L7 20"/></svg><span class="g-label">Ver galería</span><span class="g-count">Etiquetas hechas</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service Item 2 -->
+                <div class="service-item">
+                    <div class="service-item-left">
+                        <div class="service-number">02</div>
+                        <span class="service-title">OPP TRANSPARENTE</span>
+                        <div class="service-info">
+                            <div class="service-tag-wrap">
+                                <div class="service-tag">No-label look</div>
+                                <div class="service-tag">Premium</div>
+                                <div class="service-tag">Minimalista</div>
+                            </div>
+                            <p class="service-summary">El OPP Transparente crea un acabado discreto y elegante. Es perfecto cuando quieres que el envase sea protagonista y la etiqueta se vea integrada.</p>
+                        </div>
+                    </div>
+                    <div class="service-coll-wrap">
+                        <div class="service-thumb-wrap">
+                            <img src="./assets/gallery/materials/transparente.webp" alt="Service" class="service-thumb" width="180" height="240" loading="lazy" decoding="async">
+                        </div>
+                        <div class="service-thumb-wrap">
+                            <img src="./assets/gallery/materials/placeholder-video.jpg" alt="Video OPP Transparente próximamente" class="service-thumb" width="180" height="240" loading="lazy" decoding="async">
+                        </div>
+                        <div class="service-thumb-wrap service-gallery-trigger" data-material="OPP TRANSPARENTE" data-gallery="./assets/gallery/opp-transparente/transparente-01.webp|./assets/gallery/opp-transparente/transparente-04.webp|./assets/gallery/opp-transparente/transparente-06.webp|./assets/gallery/opp-transparente/transparente-07.webp|./assets/gallery/opp-transparente/transparente-08.webp|./assets/gallery/opp-transparente/transparente-09.webp|./assets/gallery/opp-transparente/transparente-12.webp|./assets/gallery/opp-transparente/transparente-14.webp|./assets/gallery/opp-transparente/transparente-15.webp">
+                            <img src="./assets/gallery/materials/transparente.webp" alt="Galería OPP Transparente" class="service-thumb" width="180" height="240" loading="lazy" decoding="async">
+                            <div class="service-gallery-corner"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="1.6" fill="#fff" stroke="none"/><path d="m21 15-4.5-4.5L7 20"/></svg></div>
+                            <div class="service-gallery-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-4.5-4.5L7 20"/></svg><span class="g-label">Ver galería</span><span class="g-count">Etiquetas hechas</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service Item 3 -->
+                <div class="service-item">
+                    <div class="service-item-left">
+                        <div class="service-number">03</div>
+                        <span class="service-title">OPP METALIZADO</span>
+                        <div class="service-info">
+                            <div class="service-tag-wrap">
+                                <div class="service-tag">Alto impacto</div>
+                                <div class="service-tag">Brillo</div>
+                                <div class="service-tag">Premium</div>
+                            </div>
+                            <p class="service-summary">El OPP Metalizado eleva la percepción del producto con un acabado brillante y llamativo. Muy recomendado para destacar en el punto de venta.</p>
+                        </div>
+                    </div>
+                    <div class="service-coll-wrap">
+                        <div class="service-thumb-wrap">
+                            <img src="./assets/gallery/materials/metalizado.webp" alt="Service" class="service-thumb" width="180" height="240" loading="lazy" decoding="async">
+                        </div>
+                        <div class="service-thumb-wrap">
+                            <video class="service-thumb" width="180" height="240" autoplay loop muted playsinline poster="https://cdn.prod.website-files.com/68d26deff2918db87d096880/68dd069e3880f62a4f93e60a_service-5.avif">
+                                <source src="./assets/videos/materials-vid/videometalizado.mp4" type="video/mp4">
+                                Tu navegador no soporta el elemento de video.
+                            </video>
+                        </div>
+                        <div class="service-thumb-wrap service-gallery-trigger" data-material="OPP METALIZADO" data-gallery="./assets/gallery/opp-metalizado/metal-01.webp|./assets/gallery/opp-metalizado/metal-02.webp|./assets/gallery/opp-metalizado/metal-03.webp|./assets/gallery/opp-metalizado/metal-04.webp|./assets/gallery/opp-metalizado/metal-05.webp|./assets/gallery/opp-metalizado/metal-06.webp|./assets/gallery/opp-metalizado/metal-08.webp|./assets/gallery/opp-metalizado/metal-09.webp|./assets/gallery/opp-metalizado/metal-10.webp|./assets/gallery/opp-metalizado/metal-11.webp|./assets/gallery/opp-metalizado/metal-12.webp|./assets/gallery/opp-metalizado/metal-13.webp|./assets/gallery/opp-metalizado/metal-14.webp|./assets/gallery/opp-metalizado/metal-15.webp|./assets/gallery/opp-metalizado/metal-16.webp|./assets/gallery/opp-metalizado/metal-17.webp|./assets/gallery/opp-metalizado/metal-18.webp|./assets/gallery/opp-metalizado/metal-19.webp">
+                            <img src="./assets/gallery/materials/metalizado.webp" alt="Galería OPP Metalizado" class="service-thumb" width="180" height="240" loading="lazy" decoding="async">
+                            <div class="service-gallery-corner"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="1.6" fill="#fff" stroke="none"/><path d="m21 15-4.5-4.5L7 20"/></svg></div>
+                            <div class="service-gallery-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-4.5-4.5L7 20"/></svg><span class="g-label">Ver galería</span><span class="g-count">Etiquetas hechas</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service Item 4 -->
+                <div class="service-item">
+                    <div class="service-item-left">
+                        <div class="service-number">04</div>
+                        <span class="service-title">PAPEL ILUSTRACIÓN</span>
+                        <div class="service-info">
+                            <div class="service-tag-wrap">
+                                <div class="service-tag">Clásico</div>
+                                <div class="service-tag">Tipo papel</div>
+                                <div class="service-tag">Gourmet</div>
+                            </div>
+                            <p class="service-summary">El papel ilustración aporta una sensación más “orgánica” y tradicional. Funciona muy bien en productos que buscan un estilo cálido, artesanal o gourmet.</p>
+                        </div>
+                    </div>
+                    <div class="service-coll-wrap">
+                        <div class="service-thumb-wrap">
+                            <img src="./assets/gallery/materials/ilustracion.webp" alt="Service" class="service-thumb" width="180" height="240" loading="lazy" decoding="async">
+                        </div>
+                        <div class="service-thumb-wrap">
+                            <video class="service-thumb" width="180" height="240" autoplay loop muted playsinline poster="https://cdn.prod.website-files.com/68d26deff2918db87d096880/68dd06bb03b17a37b8486e6e_service-7.avif">
+                                <source src="./assets/videos/materials-vid/videoilustracion.mp4" type="video/mp4">
+                                Tu navegador no soporta el elemento de video.
+                            </video>
+                        </div>
+                        <div class="service-thumb-wrap service-gallery-trigger" data-material="PAPEL ILUSTRACIÓN" data-gallery="./assets/gallery/papel-ilustracion/ilus-01.webp|./assets/gallery/papel-ilustracion/ilus-02.webp|./assets/gallery/papel-ilustracion/ilus-03.webp|./assets/gallery/papel-ilustracion/ilus-04.webp|./assets/gallery/papel-ilustracion/ilus-05.webp|./assets/gallery/papel-ilustracion/ilus-06.webp|./assets/gallery/papel-ilustracion/ilus-07.webp|./assets/gallery/papel-ilustracion/ilus-08.webp|./assets/gallery/papel-ilustracion/ilus-09.webp|./assets/gallery/papel-ilustracion/ilus-10.webp|./assets/gallery/papel-ilustracion/ilus-11.webp|./assets/gallery/papel-ilustracion/ilus-12.webp|./assets/gallery/papel-ilustracion/ilus-13.webp|./assets/gallery/papel-ilustracion/ilus-14.webp|./assets/gallery/papel-ilustracion/ilus-15.webp|./assets/gallery/papel-ilustracion/ilus-16.webp|./assets/gallery/papel-ilustracion/ilus-17.webp|./assets/gallery/papel-ilustracion/ilus-18.webp|./assets/gallery/papel-ilustracion/ilus-19.webp|./assets/gallery/papel-ilustracion/ilus-20.webp">
+                            <img src="./assets/gallery/materials/ilustracion.webp" alt="Galería Papel Ilustración" class="service-thumb" width="180" height="240" loading="lazy" decoding="async">
+                            <div class="service-gallery-corner"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="1.6" fill="#fff" stroke="none"/><path d="m21 15-4.5-4.5L7 20"/></svg></div>
+                            <div class="service-gallery-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-4.5-4.5L7 20"/></svg><span class="g-label">Ver galería</span><span class="g-count">Etiquetas hechas</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service Item 5 -->
+                <div class="service-item">
+                    <div class="service-item-left">
+                        <div class="service-number">05</div>
+                        <span class="service-title">PAPEL ILUSTRACIÓN PLUS</span>
+                        <div class="service-info">
+                            <div class="service-tag-wrap">
+                                <div class="service-tag">Adhesivo reforzado</div>
+                                <div class="service-tag">Mayor fijación</div>
+                                <div class="service-tag">Tipo papel</div>
+                            </div>
+                            <p class="service-summary">Comparte el acabado cálido y tradicional del papel ilustración, pero con un adhesivo más fuerte para una fijación superior. Ideal para envases con superficies exigentes, manipulación frecuente o condiciones donde se requiere que la etiqueta permanezca firme.</p>
+                        </div>
+                    </div>
+                    <div class="service-coll-wrap">
+                        <div class="service-thumb-wrap">
+                            <img src="./assets/gallery/materials/ilustracion.webp" alt="Papel Ilustración Plus" class="service-thumb" width="180" height="240" loading="lazy" decoding="async">
+                        </div>
+                        <div class="service-thumb-wrap">
+                            <video class="service-thumb" width="180" height="240" autoplay loop muted playsinline poster="./assets/gallery/materials/placeholder-video.jpg">
+                                <source src="./assets/videos/materials-vid/videoilustracionplus.mov" type="video/quicktime">
+                                Tu navegador no soporta el elemento de video.
+                            </video>
+                        </div>
+                        <div class="service-thumb-wrap service-gallery-trigger" data-material="PAPEL ILUSTRACIÓN PLUS" data-gallery="./assets/gallery/papel-ilustracion-plus/ilusplus-01.webp|./assets/gallery/papel-ilustracion-plus/ilusplus-02.webp|./assets/gallery/papel-ilustracion-plus/ilusplus-03.webp|./assets/gallery/papel-ilustracion-plus/ilusplus-04.webp">
+                            <img src="./assets/gallery/materials/ilustracion.webp" alt="Galería Papel Ilustración Plus" class="service-thumb" width="180" height="240" loading="lazy" decoding="async">
+                            <div class="service-gallery-corner"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="1.6" fill="#fff" stroke="none"/><path d="m21 15-4.5-4.5L7 20"/></svg></div>
+                            <div class="service-gallery-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-4.5-4.5L7 20"/></svg><span class="g-label">Ver galería</span><span class="g-count">Etiquetas hechas</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service Item 6 -->
+                <div class="service-item">
+                    <div class="service-item-left">
+                        <div class="service-number">06</div>
+                        <span class="service-title">PAPEL TÉRMICO</span>
+                        <div class="service-info">
+                            <div class="service-tag-wrap">
+                                <div class="service-tag">Datos variables</div>
+                                <div class="service-tag">Código/QR</div>
+                                <div class="service-tag">Trazabilidad</div>
+                            </div>
+                            <p class="service-summary">El papel térmico es ideal cuando la etiqueta debe incluir información variable como códigos, lote, fecha o control interno. Prioriza legibilidad y practicidad.</p>
+                        </div>
+                    </div>
+                    <div class="service-coll-wrap">
+                        <div class="service-thumb-wrap">
+                            <img src="./assets/gallery/materials/termico.webp" alt="Service" class="service-thumb" width="180" height="240" loading="lazy" decoding="async">
+                        </div>
+                        <div class="service-thumb-wrap">
+                            <video class="service-thumb" width="180" height="240" autoplay loop muted playsinline poster="https://cdn.prod.website-files.com/68d26deff2918db87d096880/68dd06f6b59842f4758922dd_service-9.avif">
+                                <source src="./assets/videos/materials-vid/videotermico.mp4" type="video/mp4">
+                                Tu navegador no soporta el elemento de video.
+                            </video>
+                        </div>
+                        <div class="service-thumb-wrap service-gallery-trigger" data-material="PAPEL TÉRMICO" data-gallery="./assets/gallery/papel-termico/termico-01.webp|./assets/gallery/papel-termico/termico-02.webp|./assets/gallery/papel-termico/termico-03.webp|./assets/gallery/papel-termico/termico-04.webp">
+                            <img src="./assets/gallery/materials/termico.webp" alt="Galería Papel Térmico" class="service-thumb" width="180" height="240" loading="lazy" decoding="async">
+                            <div class="service-gallery-corner"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="1.6" fill="#fff" stroke="none"/><path d="m21 15-4.5-4.5L7 20"/></svg></div>
+                            <div class="service-gallery-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-4.5-4.5L7 20"/></svg><span class="g-label">Ver galería</span><span class="g-count">Etiquetas hechas</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service Item 7 -->
+                <div class="service-item">
+                    <div class="service-item-left">
+                        <div class="service-number">07</div>
+                        <span class="service-title">PHARMA</span>
+                        <div class="service-info">
+                            <div class="service-tag-wrap">
+                                <div class="service-tag">Salud</div>
+                                <div class="service-tag">Ampollas</div>
+                                <div class="service-tag">Tecnología memoria</div>
+                            </div>
+                            <p class="service-summary">Material exclusivo para productos de salud, diseñado específicamente para ampollas y envases de diámetro reducido. Incorpora tecnología “memoria” que adapta y mantiene la forma una vez aplicado, logrando un ajuste preciso y estable incluso en superficies muy pequeñas o curvas.</p>
+                        </div>
+                    </div>
+                    <div class="service-coll-wrap">
+                        <div class="service-thumb-wrap">
+                            <img src="./assets/gallery/materials/pharma.jpg" alt="Material Pharma" class="service-thumb" width="180" height="240" loading="lazy" decoding="async">
+                        </div>
+                        <div class="service-thumb-wrap">
+                            <video class="service-thumb" width="180" height="240" autoplay loop muted playsinline poster="./assets/gallery/materials/placeholder-video.jpg">
+                                <source src="./assets/videos/materials-vid/videopharma.mov" type="video/quicktime">
+                                Tu navegador no soporta el elemento de video.
+                            </video>
+                        </div>
+                        <div class="service-thumb-wrap service-gallery-trigger" data-material="PHARMA" data-gallery="./assets/gallery/pharma/pharma-01.webp">
+                            <img src="./assets/gallery/materials/pharma.jpg" alt="Galería Pharma" class="service-thumb" width="180" height="240" loading="lazy" decoding="async">
+                            <div class="service-gallery-corner"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="1.6" fill="#fff" stroke="none"/><path d="m21 15-4.5-4.5L7 20"/></svg></div>
+                            <div class="service-gallery-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-4.5-4.5L7 20"/></svg><span class="g-label">Ver galería</span><span class="g-count">Etiquetas hechas</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Service Item 8 -->
+                <div class="service-item">
+                    <div class="service-item-left">
+                        <div class="service-number">08</div>
+                        <span class="service-title">PETG</span>
+                        <div class="service-info">
+                            <div class="service-tag-wrap">
+                                <div class="service-tag">360°</div>
+                                <div class="service-tag">Sleeve</div>
+                                <div class="service-tag">Alto impacto</div>
+                            </div>
+                            <p class="service-summary">El PETG es el material utilizado para etiquetas termo contraíbles. Permite una presentación envolvente con gran presencia de marca, especialmente en envases con formas complejas.</p>
+                        </div>
+                    </div>
+                    <div class="service-coll-wrap">
+                        <div class="service-thumb-wrap">
+                            <img src="./assets/gallery/materials/petg.webp" alt="Service" class="service-thumb" width="180" height="240" loading="lazy" decoding="async">
+                        </div>
+                        <div class="service-thumb-wrap">
+                            <img src="./assets/gallery/materials/placeholder-video.jpg" alt="Video PETG próximamente" class="service-thumb" width="180" height="240" loading="lazy" decoding="async">
+                        </div>
+                        <div class="service-thumb-wrap service-gallery-trigger" data-material="PETG" data-gallery="">
+                            <img src="./assets/gallery/materials/petg.webp" alt="Galería PETG" class="service-thumb" width="180" height="240" loading="lazy" decoding="async">
+                            <div class="service-gallery-corner"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="1.6" fill="#fff" stroke="none"/><path d="m21 15-4.5-4.5L7 20"/></svg></div>
+                            <div class="service-gallery-overlay"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="9" cy="9" r="2"/><path d="m21 15-4.5-4.5L7 20"/></svg><span class="g-label">Ver galería</span><span class="g-count">Etiquetas hechas</span></div>
+                        </div>
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </section>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="components.js" defer></script>
+    <script src="animations.js" defer></script>
+    <script src="script.js" defer></script>
+    <script src="lightbox.js" defer></script>
+</body>
+</html>

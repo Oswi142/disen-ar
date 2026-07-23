@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://images.unsplash.com">
+    <link rel="preload" as="image" href="./assets/gallery/backgrounds/background1.webp" fetchpriority="high">
+    <link rel="prefetch" as="image" href="./assets/gallery/backgrounds/background2.webp">
+    <link rel="prefetch" as="image" href="./assets/gallery/backgrounds/background3.webp">
+    <link rel="prefetch" as="image" href="./assets/gallery/backgrounds/background4.webp">
+    <title>DISEÑ-AR - Home</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,600;1,9..144,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="components.css">
+    <link rel="stylesheet" href="lightbox.css">
+    <style>
+        .hero-accent {
+            font-family: 'Fraunces', Georgia, serif;
+            font-style: italic;
+            font-weight: 600;
+            font-optical-sizing: auto;
+            font-variation-settings: 'SOFT' 0, 'WONK' 1;
+            letter-spacing: -0.01em;
+        }
+
+        /* ===== Design pass: tipografía y detalles de marca ===== */
+        body {
+            font-family: 'Archivo', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        .hero-title {
+            font-weight: 800;
+            letter-spacing: -0.03em;
+        }
+
+        .hero-label {
+            background: rgba(37, 99, 235, 0.28);
+            border-color: rgba(147, 180, 255, 0.35);
+            backdrop-filter: blur(8px);
+        }
+
+        .mission-badge span {
+            border-color: rgba(37, 99, 235, 0.3);
+            color: #2563eb;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            font-size: 12px;
+        }
+
+        .mission-title {
+            font-size: 32px;
+            letter-spacing: -0.02em;
+            text-wrap: pretty;
+        }
+
+        /* Banda de logos: más liviana, logos en gris que toman color al pasar */
+        .logo-section {
+            background: #f4f6f9;
+            border-top: 1px solid #e5e7eb;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 32px 0;
+        }
+        .logo-item img {
+            filter: grayscale(1) opacity(0.7);
+            transition: filter 0.3s ease;
+        }
+        .logo-item:hover img {
+            filter: none;
+        }
+
+        /* Tarjetas de proceso: numeral fantasma y bordes refinados */
+        .stack-card {
+            overflow: hidden;
+            border-radius: 24px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+        }
+        .stack-card::before {
+            content: attr(data-step);
+            position: absolute;
+            top: -10px;
+            right: 22px;
+            font-family: 'Fraunces', Georgia, serif;
+            font-style: italic;
+            font-weight: 600;
+            font-size: clamp(90px, 12vw, 150px);
+            line-height: 1.1;
+            color: rgba(255, 255, 255, 0.12);
+            pointer-events: none;
+            user-select: none;
+        }
+        .card-label {
+            background: rgba(255, 255, 255, 0.14);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+        /* Móvil/tablet: numeral fantasma más chico para que no tape el texto,
+           y logos siempre a color en pantallas táctiles (no hay hover) */
+        @media (max-width: 768px) {
+            .stack-card::before { font-size: 64px; top: -6px; right: 14px; }
+        }
+        @media (hover: none) {
+            .logo-item img { filter: none; }
+        }
+        .card-title {
+            letter-spacing: -0.02em;
+        }
+
+        .section-main-title {
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            text-transform: none;
+        }
+        .section-main-title .hero-accent {
+            font-weight: 600;
+            color: #93b4ff;
+        }
+    </style>
+</head>
+<body>
+    <div id="navbar-placeholder"></div>
+
+    <section class="hero">
+        <div class="hero-slide active" data-align="right">
+            <div class="hero-background" style="background-image: url('./assets/gallery/backgrounds/background1.webp')"></div>
+            <div class="hero-container">
+                <div class="hero-content">
+                    <span class="hero-label">Engagement para tu negocio</span>
+                    <h1 class="hero-title"><span class="hero-accent">Etiquetas</span> que marcan la diferencia</h1>
+                    <p class="hero-description">En Diseñ-ar S.R.L. diseñamos e imprimimos etiquetas autoadhesivas para potenciar la presentación y la identificación de tus productos. Trabajamos con materiales y acabados según la necesidad de tu marca: holográficas, seguridad y más.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-slide" data-align="left">
+            <div class="hero-background" style="background-image: url('./assets/gallery/backgrounds/background2.webp')"></div>
+            <div class="hero-container">
+                <div class="hero-content">
+                    <span class="hero-label">Soluciones industriales</span>
+                    <h1 class="hero-title">Comprometidos con ser referentes en <span class="hero-accent">calidad</span></h1>
+                    <p class="hero-description">Trabajamos para ofrecer etiquetas con excelente acabado, variedad y precios competitivos.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-slide" data-align="right">
+            <div class="hero-background" style="background-image: url('./assets/gallery/backgrounds/background3.webp')"></div>
+            <div class="hero-container">
+                <div class="hero-content">
+                    <span class="hero-label">Diseño personalizado</span>
+                    <h1 class="hero-title"><span class="hero-accent">Packaging</span> que conecta con tu cliente</h1>
+                    <p class="hero-description">Creamos etiquetas que refuerzan tu identidad de marca y mejoran la presentación del producto en el punto de venta.</p>
+                </div>
+            </div>
+        </div>
+        <div class="hero-slide" data-align="left">
+            <div class="hero-background" style="background-image: url('./assets/gallery/backgrounds/background4.webp')"></div>
+            <div class="hero-container">
+                <div class="hero-content">
+                    <span class="hero-label">Soluciones industriales</span>
+                    <h1 class="hero-title"><span class="hero-accent">Flexografía</span> de alta calidad</h1>
+                    <p class="hero-description">Trabajamos con impresión flexográfica para lograr etiquetas con gran definición, buen acabado y consistencia, ofreciendo una solución costo-eficiente según el material y la necesidad de tu producto.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="carousel-indicators">
+            <span class="indicator active" data-slide="0"></span>
+            <span class="indicator" data-slide="1"></span>
+            <span class="indicator" data-slide="2"></span>
+            <span class="indicator" data-slide="3"></span>
+        </div>
+    </section>
+
+    <!-- Mission Section -->
+    <section class="mission">
+        <div class="mission-container">
+            <div class="mission-content">
+                <div class="mission-right">
+                    <div class="mission-badge">
+                        <span>Impresión que potencia tu marca</span>
+                    </div>
+                    <h2 class="mission-title">En Diseñ-ar S.R.L. nos apasiona ver cómo una marca crece cuando se presenta como merece. Creemos que <span class="hero-accent" style="color:#2563eb">una etiqueta bien hecha</span> no solo identifica un producto: refuerza su valor y su presencia de marca. Por eso cuidamos cada detalle con orgullo y precisión —del material al acabado final— para que tu producto destaque.</h2>
+                </div>
+                <div class="mission-left">
+                    <div class="testimonial">
+                        <div class="testimonial-image-wrapper">
+                            <img src="./assets/picture/gerente-pic.webp" alt="Team member" class="testimonial-image" width="200" height="200" loading="lazy" decoding="async">
+                        </div>
+                        <p class="testimonial-text">
+                            Grover Cuba<br>
+                            Gerente Comercial
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Logo Carousel Section -->
+    <section class="logo-section">
+        <div class="logo-carousel">
+            <div class="logo-track">
+                <div class="logo-item" style="width: 200px; height: 200px;">
+                    <img src="./assets/logos/abd-logo.png" alt="ABD" width="200" height="200" loading="lazy" decoding="async">
+                </div>
+                <div class="logo-item" style="width: 200px; height: 200px;">
+                    <img src="./assets/logos/agri-logo.png" alt="Agri" width="200" height="200" loading="lazy" decoding="async">
+                </div>
+                <div class="logo-item" style="width: 200px; height: 200px;">
+                    <img src="./assets/logos/archer-logo.png" alt="Archer" width="200" height="200" loading="lazy" decoding="async">
+                </div>
+                <div class="logo-item" style="width: 200px; height: 200px;">
+                    <img src="./assets/logos/bovinsa-logo.png" alt="Bovinsa" width="200" height="200" loading="lazy" decoding="async">
+                </div>
+                <div class="logo-item" style="width: 200px; height: 200px;">
+                    <img src="./assets/logos/ic-logo.png" alt="IC" width="200" height="200" loading="lazy" decoding="async">
+                </div>
+                <div class="logo-item" style="width: 200px; height: 200px;">
+                    <img src="./assets/logos/ilva-logo.png" alt="Ilva" width="200" height="200" loading="lazy" decoding="async">
+                </div>
+                <div class="logo-item" style="width: 200px; height: 200px;">
+                    <img src="./assets/logos/incoprol-logo.png" alt="Incoprol" width="200" height="200" loading="lazy" decoding="async">
+                </div>
+                <div class="logo-item" style="width: 200px; height: 200px;">
+                    <img src="./assets/logos/m-logo.png" alt="M" width="200" height="200" loading="lazy" decoding="async">
+                </div>
+                <div class="logo-item" style="width: 200px; height: 200px;">
+                    <img src="./assets/logos/telchi-logo.png" alt="Telchi" width="200" height="200" loading="lazy" decoding="async">
+                </div>
+                <!-- Duplicated for seamless loop -->
+                <div class="logo-item" style="width: 200px; height: 200px;">
+                    <img src="./assets/logos/abd-logo.png" alt="ABD" width="200" height="200" loading="lazy" decoding="async">
+                </div>
+                <div class="logo-item" style="width: 200px; height: 200px;">
+                    <img src="./assets/logos/agri-logo.png" alt="Agri" width="200" height="200" loading="lazy" decoding="async">
+                </div>
+                <div class="logo-item" style="width: 200px; height: 200px;">
+                    <img src="./assets/logos/archer-logo.png" alt="Archer" width="200" height="200" loading="lazy" decoding="async">
+                </div>
+                <div class="logo-item" style="width: 200px; height: 200px;">
+                    <img src="./assets/logos/bovinsa-logo.png" alt="Bovinsa" width="200" height="200" loading="lazy" decoding="async">
+                </div>
+                <div class="logo-item" style="width: 200px; height: 200px;">
+                    <img src="./assets/logos/ic-logo.png" alt="IC" width="200" height="200" loading="lazy" decoding="async">
+                </div>
+                <div class="logo-item" style="width: 200px; height: 200px;">
+                    <img src="./assets/logos/ilva-logo.png" alt="Ilva" width="200" height="200" loading="lazy" decoding="async">
+                </div>
+                <div class="logo-item" style="width: 200px; height: 200px;">
+                    <img src="./assets/logos/incoprol-logo.png" alt="Incoprol" width="200" height="200" loading="lazy" decoding="async">
+                </div>
+                <div class="logo-item" style="width: 200px; height: 200px;">
+                    <img src="./assets/logos/m-logo.png" alt="M" width="200" height="200" loading="lazy" decoding="async">
+                </div>
+                <div class="logo-item" style="width: 200px; height: 200px;">
+                    <img src="./assets/logos/telchi-logo.png" alt="Telchi" width="200" height="200" loading="lazy" decoding="async">
+                </div>
+
+                <div class="logo-item" style="width: 200px; height: 200px;">
+                    <img src="./assets/logos/abd-logo.png" alt="ABD" width="200" height="200" loading="lazy" decoding="async">
+                </div>
+                <div class="logo-item" style="width: 200px; height: 200px;">
+                    <img src="./assets/logos/agri-logo.png" alt="Agri" width="200" height="200" loading="lazy" decoding="async">
+                </div>
+                <div class="logo-item" style="width: 200px; height: 200px;">
+                    <img src="./assets/logos/archer-logo.png" alt="Archer" width="200" height="200" loading="lazy" decoding="async">
+                </div>
+                <div class="logo-item" style="width: 200px; height: 200px;">
+                    <img src="./assets/logos/bovinsa-logo.png" alt="Bovinsa" width="200" height="200" loading="lazy" decoding="async">
+                </div>
+                <div class="logo-item" style="width: 200px; height: 200px;">
+                    <img src="./assets/logos/ic-logo.png" alt="IC" width="200" height="200" loading="lazy" decoding="async">
+                </div>
+                <div class="logo-item" style="width: 200px; height: 200px;">
+                    <img src="./assets/logos/ilva-logo.png" alt="Ilva" width="200" height="200" loading="lazy" decoding="async">
+                </div>
+                <div class="logo-item" style="width: 200px; height: 200px;">
+                    <img src="./assets/logos/incoprol-logo.png" alt="Incoprol" width="200" height="200" loading="lazy" decoding="async">
+                </div>
+                <div class="logo-item" style="width: 200px; height: 200px;">
+                    <img src="./assets/logos/m-logo.png" alt="M" width="200" height="200" loading="lazy" decoding="async">
+                </div>
+                <div class="logo-item" style="width: 200px; height: 200px;">
+                    <img src="./assets/logos/telchi-logo.png" alt="Telchi" width="200" height="200" loading="lazy" decoding="async">
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Stacked Cards Section -->
+    <section class="stacked-cards-section" style="background-color: #050086">
+        <div class="stacked-wrapper">
+            <div class="section-title-sticky">
+                <h2 class="section-main-title">Cómo<br><span class="hero-accent" style="color: #2669FF">trabajamos</span></h2>
+            </div>
+            <div class="stacked-container">
+                <div class="stack-card stack-card-white-text" data-step="01" style="background: linear-gradient(150deg, #00C794EB, #0d1b2a 100%)">
+                    <div class="card-content">
+                        <span class="card-label">Análisis del producto</span>
+                        <h3 class="card-title">Brief y aplicación</h3>
+                        <p class="card-description">Entendemos tu producto, el tipo de envase y el objetivo de marca para definir la etiqueta ideal desde el inicio.
+Incluye: medidas, volumen, material recomendado, uso (frío, humedad, manipulación), y referencia visual.</p>
+                    </div>
+                </div>
+
+                <div class="stack-card stack-card-white-text" data-step="02" style="background: linear-gradient(150deg, #00FFF2EB, #1e3a8a 100%)">
+                    <div class="card-content">
+                        <span class="card-label">Preparación técnica</span>
+                        <h3 class="card-title">Diseño y preprensa</h3>
+                        <p class="card-description">Preparamos el arte final para impresión con precisión técnica, cuidando colores, legibilidad y acabados.
+Incluye: revisión de archivos, ajustes de color, pruebas, y validación antes de producir.</p>
+                    </div>
+                </div>
+
+                <div class="stack-card stack-card-white-text" data-step="03" style="background: linear-gradient(150deg, #81AB00EB, #1f5f5b 100%)">
+                    <div class="card-content">
+                        <span class="card-label">Producción controlada</span>
+                        <h3 class="card-title">Impresión y acabados</h3>
+                        <p class="card-description">Producimos con consistencia en cada tiraje y aplicamos acabados que elevan la presentación del producto.
+Incluye: impresión, corte, rebobinado, sellado/acabados según requerimiento.</p>
+                    </div>
+                </div>
+
+                <div class="stack-card stack-card-white-text" data-step="04" style="background: linear-gradient(150deg, #FF00D7EB, #150054EB)">
+                    <div class="card-content">
+                        <span class="card-label">Aseguramiento de calidad</span>
+                        <h3 class="card-title">Control y entrega</h3>
+                        <p class="card-description">Verificamos conformidad, protegemos el producto final y coordinamos la entrega para que llegue listo a producción.
+Incluye: control de calidad, empaque, identificación de rollos y despacho.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="footer-placeholder"></div>
+
+    <script src="components.js" defer></script>
+    <script src="animations.js" defer></script>
+    <script src="script.js" defer></script>
+    <script src="lightbox.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DISEÑ-AR - Contact</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="components.css">
+    <link rel="stylesheet" href="contact.css">
+    <link rel="stylesheet" href="lightbox.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800;900&family=Fraunces:ital,opsz,wght@0,9..144,600;0,9..144,700;1,9..144,600;1,9..144,700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Archivo', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
+        .af-accent {
+            font-family: 'Fraunces', Georgia, serif;
+            font-style: italic;
+            font-weight: 600;
+            font-optical-sizing: auto;
+            font-variation-settings: 'SOFT' 0, 'WONK' 1;
+            color: #2563eb;
+            letter-spacing: -0.01em;
+        }
+        .contact-hero {
+            position: sticky;
+            top: 0;
+            z-index: 0;
+            background: url('./assets/gallery/backgrounds/cochabamba.webp') center 38% / cover no-repeat;
+            padding: 190px 0 96px;
+            overflow: hidden;
+        }
+        .contact-hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(13, 27, 42, 0.55), rgba(13, 27, 42, 0.72));
+        }
+        .contact-hero-inner {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            text-align: center;
+        }
+        .contact-hero-badge {
+            display: inline-block;
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: #83C4EF;
+            margin-bottom: 16px;
+        }
+        .contact-hero h1 {
+            font-size: clamp(36px, 5vw, 58px);
+            font-weight: 800;
+            line-height: 1.05;
+            color: #ffffff;
+            letter-spacing: -0.02em;
+            margin: 0 0 16px;
+        }
+        .contact-hero h1 .af-accent { color: #7EBCE6; }
+        .contact-hero p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.88);
+            max-width: 620px;
+            margin: 0 auto;
+        }
+        .contact-hero + .service-area-two {
+            padding-top: 36px;
+        }
+        .contact-below {
+            position: relative;
+            z-index: 1;
+            background: #ffffff;
+        }
+        body { background: #ffffff; }
+        /* Spotlight que sigue el cursor en la plantilla */
+        .quote-template-card {
+            position: relative;
+            overflow: hidden;
+        }
+        .quote-template-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(560px circle at var(--mx, 50%) var(--my, 50%), rgba(37, 99, 235, 0.28), rgba(22, 50, 79, 0.14) 42%, transparent 68%);
+            opacity: 0;
+            transition: opacity 0.45s ease;
+            pointer-events: none;
+        }
+        .quote-template-card:hover::before { opacity: 1; }
+        .quote-template-card > * { position: relative; z-index: 1; }
+        @media (max-width: 768px) {
+            .contact-hero { padding: 150px 0 72px; background-position: center 30%; }
+            .contact-hero p { font-size: 16px; }
+        }
+        @media (max-width: 480px) {
+            .contact-hero { padding: 128px 0 56px; }
+        }
+    </style>
+</head>
+<body>
+    <div id="navbar-placeholder"></div>
+
+    <!-- Contact Hero -->
+    <section class="contact-hero">
+        <div class="contact-hero-inner">
+            <span class="contact-hero-badge">Contáctanos</span>
+            <h1>Hablemos de tu <span class="af-accent">etiqueta</span></h1>
+            <p>Cuéntanos qué producto necesitas identificar o presentar mejor. Te asesoramos en material, formato y producción para darte una cotización precisa.</p>
+        </div>
+    </section>
+
+    <div class="contact-below">
+    <section class="service-area-two">
+        <div class="service-container-artego">
+            <h2 class="contact-main-title">¿Qué necesitamos para cotizar tu <span class="af-accent">etiqueta</span>?</h2>
+            
+            <!-- Service Item 1 -->
+            <div class="service-item-two">
+                <div class="service-number-box">
+                    <div class="service-number">01</div>
+                </div>
+                <div class="service-content-box">
+                    <div class="service-content-inner">
+                        <h2 class="heading-six pb-10">Tipo de etiqueta</h2>
+                        <p class="section-content-sm">Elige el servicio para orientar material, formato y producción.</p>
+                    </div>
+                    <ul role="list" class="service-list">
+                        <li class="service-list-item">
+                            <div class="service-list-text">Autoadhesiva </div>
+                        </li>
+                        <li class="service-list-item">
+                            <div class="service-list-text">Termo PETG</div>
+                        </li>
+                        <li class="service-list-item">
+                            <div class="service-list-text">Asesoría</div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="service-img-box">
+                    <img src="assets/quote/cotizar7.webp" loading="lazy" alt="Tipo de etiqueta" class="service-img-two service-thumb">
+                </div>
+            </div>
+
+            <!-- Service Item 2 -->
+            <div class="service-item-two">
+                <div class="service-number-box">
+                    <div class="service-number">02</div>
+                </div>
+                <div class="service-content-box">
+                    <div class="service-content-inner">
+                        <h2 class="heading-six pb-10">Arte / diseño</h2>
+                        <p class="section-content-sm">Envíanos el diseño digital o una muestra física para evaluar impresión y colores.</p>
+                    </div>
+                    <ul role="list" class="service-list">
+                        <li class="service-list-item">
+                            <div class="service-list-text">PDF/AI</div>
+                        </li>
+                        <li class="service-list-item">
+                            <div class="service-list-text">Muestra física</div>
+                        </li>
+                        <li class="service-list-item">
+                            <div class="service-list-text">Revisión</div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="service-img-box">
+                    <img src="assets/quote/cotizar2.webp" loading="lazy" alt="Arte / diseño" class="service-img-two service-thumb">
+                </div>
+            </div>
+
+            <!-- Service Item 3 -->
+            <div class="service-item-two">
+                <div class="service-number-box">
+                    <div class="service-number">03</div>
+                </div>
+                <div class="service-content-box">
+                    <div class="service-content-inner">
+                        <h2 class="heading-six pb-10">Medidas y forma</h2>
+                        <p class="section-content-sm">Indícanos el tamaño y la forma de la etiqueta para cotizar con precisión.</p>
+                    </div>
+                    <ul role="list" class="service-list">
+                        <li class="service-list-item">
+                            <div class="service-list-text">Alto × Ancho</div>
+                        </li>
+                        <li class="service-list-item">
+                            <div class="service-list-text">Forma</div>
+                        </li>
+                        <li class="service-list-item">
+                            <div class="service-list-text">Envase</div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="service-img-box">
+                    <img src="assets/quote/cotizar3.webp" loading="lazy" alt="Medidas y forma" class="service-img-two service-thumb">
+                </div>
+            </div>
+
+            <!-- Service Item 4 -->
+            <div class="service-item-two">
+                <div class="service-number-box">
+                    <div class="service-number">04</div>
+                </div>
+                <div class="service-content-box">
+                    <div class="service-content-inner">
+                        <h2 class="heading-six pb-10">Cantidad (pedido)</h2>
+                        <p class="section-content-sm">La cantidad define el costo unitario. Pedido desde 3.000 unidades.</p>
+                    </div>
+                    <ul role="list" class="service-list">
+                        <li class="service-list-item">
+                            <div class="service-list-text">Desde 3.000</div>
+                        </li>
+                        <li class="service-list-item">
+                            <div class="service-list-text">Volumen</div>
+                        </li>
+                        <li class="service-list-item">
+                            <div class="service-list-text">Costo unitario</div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="service-img-box">
+                    <img src="assets/quote/cotizar7.webp" loading="lazy" alt="Cantidad (pedido)" class="service-img-two service-thumb">
+                </div>
+            </div>
+            <!-- Service Item 5 -->
+            <div class="service-item-two">
+                <div class="service-number-box">
+                    <div class="service-number">05</div>
+                </div>
+                <div class="service-content-box">
+                    <div class="service-content-inner">
+                        <h2 class="heading-six pb-10">Colores y acabado</h2>
+                        <p class="section-content-sm">Si conoces los colores, indícalos. Si no, nuestro equipo los determina según el arte.</p>
+                    </div>
+                    <ul role="list" class="service-list">
+                        <li class="service-list-item">
+                            <div class="service-list-text">N° colores</div>
+                        </li>
+                        <li class="service-list-item">
+                            <div class="service-list-text">Brillo/Mate</div>
+                        </li>
+                        <li class="service-list-item">
+                            <div class="service-list-text">Evaluación</div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="service-img-box">
+                    <img src="assets/quote/cotizar6.webp" loading="lazy" alt="Colores y acabado" class="service-img-two service-thumb">
+                </div>
+            </div>
+            <!-- Service Item 6 -->
+            <div class="service-item-two">
+                <div class="service-number-box">
+                    <div class="service-number">06</div>
+                </div>
+                <div class="service-content-box">
+                    <div class="service-content-inner">
+                        <h2 class="heading-six pb-10">Material</h2>
+                        <p class="section-content-sm">Dinos el material deseado. Si no estás seguro, te recomendamos según el uso del producto.</p>
+                    </div>
+                    <ul role="list" class="service-list">
+                        <li class="service-list-item">
+                            <div class="service-list-text">OPP / Papel</div>
+                        </li>
+                        <li class="service-list-item">
+                            <div class="service-list-text">PETG</div>
+                        </li>
+                        <li class="service-list-item">
+                            <div class="service-list-text">Recomendación</div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="service-img-box">
+                    <img src="assets/quote/cotizar1.webp" loading="lazy" alt="Material" class="service-img-two service-thumb">
+                </div>
+            </div>
+            <!-- Service Item 7 -->
+            <div class="service-item-two">
+                <div class="service-number-box">
+                    <div class="service-number">07</div>
+                </div>
+                <div class="service-content-box">
+                    <div class="service-content-inner">
+                        <h2 class="heading-six pb-10">Fecha requerida</h2>
+                        <p class="section-content-sm">Cuéntanos para cuándo lo necesitas para planificar producción y entrega.</p>
+                    </div>
+                    <ul role="list" class="service-list">
+                        <li class="service-list-item">
+                            <div class="service-list-text">Urgente</div>
+                        </li>
+                        <li class="service-list-item">
+                            <div class="service-list-text">Programado</div>
+                        </li>
+                        <li class="service-list-item">
+                            <div class="service-list-text">Entrega</div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="service-img-box">
+                    <img src="assets/quote/cotizar4.webp" loading="lazy" alt="Fecha requerida" class="service-img-two service-thumb">
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Quote Template Section -->
+    <section class="quote-template-section">
+        <div class="quote-template-container">
+            <div class="quote-template-card">
+                <!-- Left Side: Header info -->
+                <div class="quote-template-left">
+                    <span class="quote-template-badge">PLANTILLA DE COTIZACIÓN</span>
+                    <h2 class="quote-template-title">Para enviar por WhatsApp o correo</h2>
+                    <p class="quote-template-subtitle">Llena los datos en esta plantilla interactiva y envíala directamente por WhatsApp o correo.</p>
+                </div>
+                
+                <!-- Right Side: Content and Fields -->
+                <div class="quote-template-right">
+                    <div class="quote-template-fields">
+                        <div class="template-line">
+                            <span class="line-label">Asunto:</span>
+                            <input type="text" class="template-input" id="tpl-asunto" value="Cotización de etiquetas" placeholder="Cotización de etiquetas - [Nombre de empresa]" aria-label="Asunto de la cotización">
+                        </div>
+                        <div class="template-line">
+                            <span class="line-label">Empresa / contacto:</span>
+                            <input type="text" class="template-input" id="tpl-empresa" placeholder="Nombre de empresa o persona de contacto" aria-label="Empresa o contacto">
+                        </div>
+                        <div class="template-line">
+                            <span class="line-label">Tipo de etiqueta:</span>
+                            <select class="template-select" id="tpl-tipo" aria-label="Tipo de etiqueta">
+                                <option value="" disabled selected>Selecciona una opción...</option>
+                                <option value="Autoadhesiva">Autoadhesiva</option>
+                                <option value="Termo PETG">Termo PETG</option>
+                                <option value="Asesoría">Asesoría</option>
+                            </select>
+                        </div>
+                        <div class="template-line">
+                            <span class="line-label">Medidas y forma:</span>
+                            <input type="text" class="template-input" id="tpl-medidas" placeholder="Ej: 10x15cm, rectangular" aria-label="Medidas y forma">
+                        </div>
+                        <div class="template-line">
+                            <span class="line-label">Cantidad:</span>
+                            <input type="text" class="template-input" id="tpl-cantidad" placeholder="Ej: 5.000 unidades" aria-label="Cantidad">
+                        </div>
+                        <div class="template-line">
+                            <span class="line-label">Material:</span>
+                            <select class="template-select" id="tpl-material" aria-label="Material">
+                                <option value="" disabled selected>Selecciona un material...</option>
+                                <option value="OPP Blanco">OPP Blanco</option>
+                                <option value="OPP Transparente">OPP Transparente</option>
+                                <option value="OPP Metalizado">OPP Metalizado</option>
+                                <option value="Papel Ilustración">Papel Ilustración</option>
+                                <option value="Papel Térmico">Papel Térmico</option>
+                                <option value="PETG (Termo contraíble)">PETG (Termo contraíble)</option>
+                            </select>
+                        </div>
+                        <div class="template-line">
+                            <span class="line-label">Arte o muestra:</span>
+                            <select class="template-select" id="tpl-arte" aria-label="Arte o muestra">
+                                <option value="" disabled selected>Selecciona una opción...</option>
+                                <option value="PDF/AI">PDF/AI (Diseño digital)</option>
+                                <option value="Muestra física">Muestra física</option>
+                                <option value="Por revisar">Por revisar / asesorar</option>
+                            </select>
+                        </div>
+                        <div class="template-line">
+                            <span class="line-label">Fecha requerida:</span>
+                            <input type="text" class="template-input" id="tpl-fecha" placeholder="Ej: Lo antes posible, 15 de julio" aria-label="Fecha requerida">
+                        </div>
+                    </div>
+                    
+                    <hr class="quote-template-divider">
+                    
+                    <div class="quote-template-footer">
+                        <p class="quote-template-footer-text">
+                            Puedes enviarlo por <a href="#" id="send-whatsapp" class="quote-footer-action-link">WhatsApp</a> o al correo <a href="#" id="send-email" class="quote-footer-action-link">producciondisenarsrl@gmail.com</a>.
+                        </p>
+                        <button class="btn-copy-template" id="btn-copy-template" aria-label="Copiar plantilla de cotización al portapapeles">
+                            <svg class="copy-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                            <span class="btn-text">Copiar plantilla</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Information Section -->
+    <section class="contact-info-section">
+        <div class="contact-info-container">
+            
+            <!-- Left Side: Contact Information -->
+            <div class="contact-info-content">
+                <h2 class="contact-main-title"><span class="af-accent">Identidad</span> que marca la diferencia</h2>
+                <p class="contact-intro-text">En Diseñ-ar S.R.L., convertimos tu visión en etiquetas de alto impacto que potencian la presencia de tu marca.</p>
+                
+                <!-- Social Media -->
+                <div class="contact-info-block">
+                    <h3 class="contact-block-title">Encuéntranos mediante</h3>
+                    <div class="social-icons-row">
+                        <a href="https://www.facebook.com/disenodisenar" class="social-icon-link social-icon-facebook" aria-label="Facebook">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                            </svg>
+                        </a>
+                        <a href="https://wa.me/59171436133" class="social-icon-link social-icon-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Location -->
+                <div class="contact-info-block">
+                    <h3 class="contact-block-title">Oficinas</h3>
+                    <p class="contact-block-text">Francisco Pizarro entre Parque Ex Combatientes y 15 de Agosto, Cochabamba</p>
+                </div>
+
+                <!-- Horario -->
+                <div class="contact-info-block">
+                    <h3 class="contact-block-title">Horario de atención</h3>
+                    <p class="contact-block-text">Lunes a viernes: 8:00 – 18:00<br>Sábado: 8:00 – 12:00<br>Domingo: cerrado</p>
+                </div>
+
+                <!-- Email -->
+                <div class="contact-info-block">
+                    <h3 class="contact-block-title">Email</h3>
+                    <a href="mailto:producciondisenarsrl@gmail.com" class="contact-email-link">producciondisenarsrl@gmail.com</a>
+                </div>
+
+                <!-- Phone -->
+                <div class="contact-info-block">
+                    <h3 class="contact-block-title">Teléfono</h3>
+                    <span class="contact-email-link" style="cursor: default;">(4) 424 0562 </span>
+                </div>
+            </div>
+
+            <!-- Right Side: Map -->
+            <div class="contact-map-container">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1647.8934312710678!2d-66.17196136442155!3d-17.38676451778796!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x93e3753d89a50211%3A0xa3e17a0d7937b478!2sDISE%C3%91-AR%20S.R.L.!5e0!3m2!1ses-419!2sbo!4v1771520298040!5m2!1ses-419!2sbo" 
+                    class="contact-map-iframe"
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+
+        </div>
+    </section>
+
+    <div id="footer-placeholder"></div>
+    </div>
+
+    <script src="components.js" defer></script>
+    <script src="animations.js" defer></script>
+    <script src="lightbox.js" defer></script>
+    <script src="script.js" defer></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const card = document.querySelector('.quote-template-card');
+            if (card) {
+                card.addEventListener('mousemove', (e) => {
+                    const r = card.getBoundingClientRect();
+                    card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+                    card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+                });
+            }
+        });
+    </script>
+</body>
+</html>
